@@ -1,0 +1,27 @@
+provider "aws" {
+  version = "~> 3.0"
+  region  = "us-east-1"
+}
+
+resource "aws_s3_bucket" "foo" {
+  bucket = "import-as-module-1a"
+  acl    = "private"
+
+  tags = {
+    Name        = "My bucket 1A"
+    Environment = "Dev"
+  }
+}
+
+resource "aws_s3_bucket" "bar" {
+  bucket = "import-as-module-2a"
+  acl    = "private"
+  tags = {
+    Name        = "My bucket 2A"
+    Environment = "Dev"
+  }
+}
+
+# terraform state show aws_s3_bucket.bar
+# terraform state show aws_s3_bucket.foo
+
