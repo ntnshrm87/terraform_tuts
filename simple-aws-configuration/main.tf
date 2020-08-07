@@ -1,6 +1,8 @@
-resource "aws_s3_bucket" "bucky1" {
-  bucket_prefix = var.bucket_prefix
-  acl           = var.acl
+module "test_s3_bucket" {
+  source        = "./modules"
+  bucket_prefix = "modules-explicit-over-main-"
+}
 
-  tags = var.tags
+provider "aws" {
+  region = "us-east-1"
 }
